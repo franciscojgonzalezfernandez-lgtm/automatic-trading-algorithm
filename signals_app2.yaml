@@ -1,0 +1,38 @@
+runtime: python
+env: flex
+service: signals2
+# Workers = resources,cpu * 2 + 1
+# Threads 2-4 x $(NUM_CORES)
+entrypoint: gunicorn --timeout 600 --workers=5 -b :$PORT signals.main:app
+
+runtime_config:
+  python_version: 3.6
+
+resources:
+  cpu: 1
+  memory_gb: 1
+  disk_size_gb: 10
+
+automatic_scaling:
+  min_num_instances: 1
+  max_num_instances: 1
+  cpu_utilization:
+    target_utilization: 0.1
+
+env_variables:
+  REDISHOST: 10.69.42.91
+  REDISPORT: 6379
+
+skip_files:
+  - ^(.*/)?.*/cache/.*$
+  - ^(.*/)?.*/results/.*$
+  - test/
+  - docs/
+  - venv/
+  - tmp/
+  # Defaults
+  - ^(.*/)?#.*#$
+  - ^(.*/)?.*~$
+  - ^(.*/)?.*\.py[co]$
+  - ^(.*/)?.*/RCS/.*$
+  - ^(.*/)?\..*$

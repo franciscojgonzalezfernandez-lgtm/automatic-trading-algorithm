@@ -1,0 +1,28 @@
+cron:
+- description: "MobyDick - Analyze market every 2m even"
+  url: /mobydick/signals/market/analyze
+  schedule: every 2 minutes from 00:00 to 23:58
+  target: signals
+- description: "MobyDick - Analyze market every 2m odd"
+  url: /mobydick/signals/market/analyze
+  schedule: every 2 minutes from 00:01 to 23:59
+  target: signals
+
+- description: "MobyDick - Analyzer J3_1m - Every 2m even"
+  url: /mobydick/signals/market/analyzerJ3_1m
+  schedule: every 2 minutes from 00:00 to 23:58
+  target: signals2
+- description: "MobyDick - Analyzer J3_1m - Every 2m odd"
+  url: /mobydick/signals/market/analyzerJ3_1m
+  schedule: every 2 minutes from 00:01 to 23:59
+  target: signals2
+
+- description: "MobyDick - Upload binance2 to BQ"
+  url: /mobydick/admin/show/account?account=binance2&upload_to_bq=True
+  schedule: every 1 hours
+  target: signals2
+
+#- description: "MobyDick - Analyzer J2_5m - Every 5m odd"
+#  url: /mobydick/signals/market/analyzerJ2_5m
+#  schedule: every 5 minutes from 00:02 to 23:59
+#  target: signals2

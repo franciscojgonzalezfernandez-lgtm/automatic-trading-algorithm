@@ -1,0 +1,6 @@
+steps:
+- name: "gcr.io/cloud-builders/gcloud"
+  args: ["app", "deploy", 'signals_app.yaml']
+- name: "gcr.io/cloud-builders/gcloud"
+  args: ["app", "deploy", 'cron.yaml']
+timeout: '3600s'
